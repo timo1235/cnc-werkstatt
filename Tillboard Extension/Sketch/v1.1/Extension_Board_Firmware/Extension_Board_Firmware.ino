@@ -6,7 +6,7 @@
 */
 
 #include <Arduino.h>
-#include <U8x8lib.h>
+
 
 
 // Programm configuration
@@ -17,12 +17,21 @@ uint16_t speedPotiMin = 10;  // min delay between steps in microseconds
 uint16_t speedPotiMax = 5000; // min delay between steps in microseconds
 uint16_t tempSensorUpdateInterval = 5000; // interval between temperatur sensor reads in milliseconds
 
-#define READ_TEMPERATURES // comment with "//" if temperature sensor is not needed
+//#define READ_TEMPERATURES // comment with "//" if temperature sensor is not needed
+//#define USE_DISPLAY // comment with "//" if temperature sensor is not needed
+
+#ifdef USE_DISPLAY 
+    #include <U8x8lib.h>
+#endif
 
 #ifdef READ_TEMPERATURES 
     #include <OneWire.h> 
     #include <DallasTemperature.h>
 #endif
+
+
+
+
 
 enum AUTOSQUARESTATE
 {
@@ -68,11 +77,13 @@ byte temperaturePin = 9;
 byte asXOn = A3;
 byte asYOn = A2;
 
-// Display byte SDA = A4, SCL = A5
-U8X8_SSD1306_128X32_UNIVISION_SW_I2C display(/* clock=*/SCL, /* data=*/SDA, /* reset=*/U8X8_PIN_NONE);
-// Hardware i2c does not work for me with long wires
-// U8X8_SSD1306_128X32_UNIVISION_HW_I2C display(/* clock=*/SCL, /* data=*/SDA, /* reset=*/U8X8_PIN_NONE);
-const uint8_t *defaultFont = u8x8_font_pxplustandynewtv_f;
+#ifdef USE_DISPLAY 
+    // Display byte SDA = A4, SCL = A5
+    U8X8_SSD1306_128X32_UNIVISION_SW_I2C display(/* clock=*/SCL, /* data=*/SDA, /* reset=*/U8X8_PIN_NONE);
+    // Hardware i2c does not work for me with long wires
+    // U8X8_SSD1306_128X32_UNIVISION_HW_I2C display(/* clock=*/SCL, /* data=*/SDA, /* reset=*/U8X8_PIN_NONE);
+    const uint8_t *defaultFont = u8x8_font_pxplustandynewtv_f;
+#endif
 #ifdef READ_TEMPERATURES 
     OneWire oneWire(tempSensor); 
     DallasTemperature sensors(&oneWire);
@@ -101,40 +112,41 @@ void updateAutosquareDelay() {
     }
     actualStepDelay = map(sum / speedPotiSamples, 0, 1023, speedPotiMax, speedPotiMin); 
 }
+#ifdef USE_DISPLAY  
+  void setDisplayStateOfStepper(STEPPER *stepper, byte displayStatePosition) {
+      // Set last display state
+      lastDisplayStates[displayStatePosition] = stepper->state;
+      byte columPosition = stepper->stateDisplayColumn + (sizeof(stepper->label)/sizeof(char));
+  
+      // Empty last state
+      display.setFont(defaultFont);
+      display.drawString(columPosition, stepper->stateDisplayRow, "   ");
+  
+      if(stepper->state == off) {
+          display.setFont(defaultFont);
+          display.drawString(columPosition, stepper->stateDisplayRow, "off");
+      } else if(stepper->state == undefined){    
+          display.setFont(defaultFont);        
+          display.drawString(columPosition, stepper->stateDisplayRow, "?");
+      } else if(stepper->state == done) {
+          display.setFont(u8x8_font_open_iconic_check_1x1);
+          display.drawGlyph(columPosition, stepper->stateDisplayRow, 64);
+      }
+  }
 
-void setDisplayStateOfStepper(STEPPER *stepper, byte displayStatePosition) {
-    // Set last display state
-    lastDisplayStates[displayStatePosition] = stepper->state;
-    byte columPosition = stepper->stateDisplayColumn + (sizeof(stepper->label)/sizeof(char));
-
-    // Empty last state
-    display.setFont(defaultFont);
-    display.drawString(columPosition, stepper->stateDisplayRow, "   ");
-
-    if(stepper->state == off) {
-        display.setFont(defaultFont);
-        display.drawString(columPosition, stepper->stateDisplayRow, "off");
-    } else if(stepper->state == undefined){    
-        display.setFont(defaultFont);        
-        display.drawString(columPosition, stepper->stateDisplayRow, "?");
-    } else if(stepper->state == done) {
-        display.setFont(u8x8_font_open_iconic_check_1x1);
-        display.drawGlyph(columPosition, stepper->stateDisplayRow, 64);
-    }
-}
-void updateDisplay()
-{
-    for (byte i = 0; i < sizeof(steppers) / sizeof(STEPPER); i++)
-    {
-        STEPPER *stepper = &steppers[i];
-        // Only update when things changed
-        if(stepper->state == lastDisplayStates[i]) {
-            continue;
-        }  
-
-        setDisplayStateOfStepper(stepper, i);      
-    }
-}
+  void updateDisplay()
+  { 
+      for (byte i = 0; i < sizeof(steppers) / sizeof(STEPPER); i++)
+      {
+          STEPPER *stepper = &steppers[i];
+          // Only update when things changed
+          if(stepper->state == lastDisplayStates[i]) {
+              continue;
+          }  
+  
+          setDisplayStateOfStepper(stepper, i);      
+      }
+  }
 
 void initDisplay() {
     display.begin();
@@ -148,6 +160,8 @@ void initDisplay() {
         setDisplayStateOfStepper(stepper, i); 
     }   
 }
+#endif
+
 
 void autosquare()
 {
@@ -172,7 +186,9 @@ void autosquare()
             else
             {
                 stepper->state = done;
-                updateDisplay();
+                #ifdef USE_DISPLAY  
+                  updateDisplay();
+                #endif
             }
         }
     }
@@ -216,8 +232,10 @@ void initialize()
 
     // Set pulse speed
     updateAutosquareDelay();
-    
-    updateDisplay();
+
+    #ifdef USE_DISPLAY  
+      updateDisplay();
+    #endif
 
     autosuareInitialised = true;
 }
@@ -234,13 +252,15 @@ void terminate()
 void updateTemperatureSensor()
 {
     #ifdef READ_TEMPERATURES 
-        sensors.requestTemperatures();
-        display.setFont(defaultFont);
-        display.drawUTF8(0,3, "Temp:");
-        display.setCursor(6,3);
-        display.print(sensors.getTempCByIndex(0));
-        display.drawString(10,3,"Grad");
-        lastReadTemperature = millis();
+      #ifdef USE_DISPLAY  
+          sensors.requestTemperatures();
+          display.setFont(defaultFont);
+          display.drawUTF8(0,3, "Temp:");
+          display.setCursor(6,3);
+          display.print(sensors.getTempCByIndex(0));
+          display.drawString(10,3,"Grad");
+          lastReadTemperature = millis();
+      #endif
     #endif
 }
 
@@ -292,8 +312,10 @@ void setup()
     digitalWrite(asStop, LOW);
     pinMode(in9Mega, OUTPUT);
     digitalWrite(in9Mega, HIGH);
-    // init display
-    initDisplay();
+    #ifdef USE_DISPLAY  
+      // init display
+      initDisplay();
+    #endif
     updateTemperatureSensor();
 }
 

@@ -1,0 +1,21 @@
+{
+	"folders": [
+        {
+            "path": "..\\Tillboard extension"
+        },
+        {
+            "path": "."
+        },
+        {
+            "path": "..\\Wireless Panel"
+        },
+        {
+            "name": "OPEN-CNC-Shield",
+            "path": "..\\OPEN-CNC-Shield"
+        },
+        {
+            "path": "..\\..\\..\\..\\.platformio\\lib\\CNC-library-timo"
+        }
+    ],
+	"settings": {}
+}
