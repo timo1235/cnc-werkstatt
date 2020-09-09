@@ -7,7 +7,7 @@
 #include <Arduino.h>
 #include <RF24.h>
 #include "RotaryEncoder.h"
-#include <cnc-library.h>
+#include "cnc-library.h"
 
 // Configuration
 #define DEBUG ; // Uncomment to output debug messages

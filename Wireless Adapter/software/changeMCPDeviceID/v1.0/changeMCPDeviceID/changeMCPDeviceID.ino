@@ -32,10 +32,12 @@ void setup()
   digitalWrite(22, HIGH);
   delay(500);
   Serial.begin(9600);  // initialize serial interface for readAddress()
+  Serial.println("Schreibe adresse um...");
   i2c.init(SCL_PIN, SDA_PIN); // initialize i2c interface
   pinMode(LDACpin, OUTPUT); // Set LDACpin to OUTPUT
   writeAddress(0,1);  // Write new address (current Device ID, new Device ID)
   delay(100); // wait for EEPROM writing 
+  //readAddressOriginal();
   readAddress(); // Read current Device ID 
 } 
 
@@ -62,6 +64,21 @@ int address = 0;
     } else {
       Serial.println("Adresse konnte nicht geändert werden!");
     }
+}
+
+void readAddressOriginal() {
+  digitalWrite(LDACpin, HIGH);
+  i2c.start(0B00000000);
+  i2c.ldacwrite(0B00001100, LDACpin); // modified command for LDAC pin latch
+  i2c.restart(0B11000001);
+  uint8_t address = i2c.read(true);
+  i2c.stop();
+  int scanedAddress = (address & 0B00001110) >> 1;
+  Serial.print("Scaned Address = ");
+  Serial.print(scanedAddress,DEC);
+  Serial.print("(");
+  Serial.print(scanedAddress,BIN);
+  Serial.println(")");
 }
 
 void writeAddress(int oldAddress, int newAddress) {
