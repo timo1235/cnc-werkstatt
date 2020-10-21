@@ -33,7 +33,7 @@
 /**
  * WIRELESS ADAPTER CONNECTED
  * Comment with // if wireless adapter is not connected!
- * IMPORTANT - Has to commented if there is a wired connection on the sub-d port. For example if the wired extension panel is used
+ * IMPORTANT - Has to be commented if there is a wired connection on the sub-d port. For example if the wired extension panel is used
  */
 //#define WIRELESS_ADAPTER_CONNECTED
 
