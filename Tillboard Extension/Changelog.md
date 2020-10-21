@@ -1,13 +1,16 @@
 # Tillboard Extension
 ## Changelog
+### 2.4
+* Changed GND pads for easier soldering
+  
 ### 2.3
-* Temp sensor gefixed
-* falsche Verkabelung für Y2 gefixed
+* Fixed Temp sensor
+* Fixed wrong wireing of Y2
  
 ### 2.2
-* Panel Anschluss konfigurierbar gemacht
-* Motor Stop, Programm Stop, Speed 4-6, IN15, Autosquare und die Display Anschlüsse werden jetzt nur optional ans Panel weitergeleitet, somit könnten die Pins auch anders genutzt werden
-* 11 Anschlüsse können nun frei konfiguriert werden
+* Added configuration for panel connection
+* Motor Stop, Programm Stop, Speed 4-6, IN15, Autosquare and display ports are now optional and can be used for other functions if wanted
+* Changed 11 ports to be freely configured
   
 ### 2.1
 * Fixed wrong wiring of “DIR X” on autosquare at LTV847(U8), changed one “DIR X” to “DIR Y”
