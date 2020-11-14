@@ -1,5 +1,7 @@
 # Tillboard Extension Sketch
 ## Changelog
+## 2.1
+    - Changed configuration variables to #define
 
 ## 2.0
     - added endstop state configuration to handle normally closed and normally open endstops

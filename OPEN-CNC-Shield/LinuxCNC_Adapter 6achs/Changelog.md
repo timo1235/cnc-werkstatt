@@ -1,4 +1,4 @@
-# LinuxCNC Adapter
+# LinuxCNC Adapter 6Achs
 ## Changelog
 ### 1.0
 * Created from LinuxCNC Adapter v1.2
