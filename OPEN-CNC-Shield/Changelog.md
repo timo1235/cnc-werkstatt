@@ -1,5 +1,14 @@
 # OPEN-CNC-Shield
 ## Changelog
+### 1.8
+* Changed Resistor value of R20 from 10K to 1K
+  
+### 1.7
+* Increased size of connection holes
+* Added diode for second arduino
+* Second arduino is now also powered via 5V instead of 12V
+* Added pads for dsub connector
+
 ### 1.6
 * Added jumper configuration for default ena state
 * Fixed footprint of DS18B20 for easier soldering
