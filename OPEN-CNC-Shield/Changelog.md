@@ -1,5 +1,8 @@
 # OPEN-CNC-Shield
 ## Changelog
+### 1.9
+* Increased GND spoke width from power supply to the shield
+  
 ### 1.8
 * Changed Resistor value of R20 from 10K to 1K
   
