@@ -1,7 +1,12 @@
 # Table Router Shield
+
+## The design is still experimental and currently being tested!!
+
 ## Changelog
 ### 1.3
 * Fixed screw terminal spacing
+* Changed voltage for the rotation speed poti to 3.3V
+* Fixed voltage regulator design
 
 ### 1.2
 * Changed screw pads to be connected to GND
