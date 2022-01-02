@@ -3,6 +3,13 @@
 ## The design is still experimental and currently being tested!!
 
 ## Changelog
+### 1.5 
+* Added Pullup resistors to ESP32 input-only pins 34,35,36,39
+
+### 1.4
+* Changed some labels
+* Changed display powering. Now its powered also if only USB is available
+
 ### 1.3
 * Fixed screw terminal spacing
 * Changed voltage for the rotation speed poti to 3.3V
