@@ -1,5 +1,11 @@
 # OPEN-CNC-Shield
 ## Changelog
+### 2.0
+* Changed complete design for smd build
+* Replaced the arduino pro mini for estlcam with the original Mega2560 because pro mini support in estlcam is needy
+* Added second onboard temp sensor near the voltage regulators
+* Completely removed 12V power net
+
 ### 1.9
 * Increased GND spoke width from power supply to the shield
   
