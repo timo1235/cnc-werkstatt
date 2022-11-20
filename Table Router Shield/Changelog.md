@@ -3,6 +3,12 @@
 ## The design is still experimental and currently being tested!!
 
 ## Changelog
+### 1.6
+* Changed input volatge from 12V to 12V-32V
+* Changed input led resistor from 680ohm to 1800ohm
+* Added OR-Gate to increase voltage of PULL, DIR and ENA to 5V
+* Changed 10K single resistors to resistor array
+
 ### 1.5 
 * Added Pullup resistors to ESP32 input-only pins 34,35,36,39
 
