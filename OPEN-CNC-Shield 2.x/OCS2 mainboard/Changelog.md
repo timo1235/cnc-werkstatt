@@ -19,3 +19,7 @@
 - Changed pinout for esp32 
   - now SDA and SCL are used for onboard chip communication instead of SDA2 and SCL2
   - SDA2 and SCL2 pins are now used as TX_2 and RX_2 for communication with the panel module
+
+### 2.05
+- reset pin of BU2506FV is now tied to GND
+- added 2k2 resistors in series to analog outputs of BU2506FV. Otherwise it was not possible to use a handwheel directly with the ocs2 pinout

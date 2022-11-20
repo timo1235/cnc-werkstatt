@@ -1,4 +1,4 @@
-# ControllerModule GRBL
+# ControllerModule GRBL Mega
 ## Changelog
 ### 1.02
 - Added jumper JP1 for ENA connection

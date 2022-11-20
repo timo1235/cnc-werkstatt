@@ -1,4 +1,4 @@
-# PanelModule RJ45
+# PanelModule D-SUB25
 ## Changelog
-### 1.01
-- Replaced 12pin terminals with two 6pin terminals because of availability
+### 1.1
+- Initial
