@@ -2,9 +2,30 @@
 
 ## Changelog
 
-### unreleased
+### 2.13
+
+- Changed ENA connections
+  - Route ENA from ControllerModule through the octal buffer to the drivers, to ensure 5V logic level, regardless of the controller module
+  - Changed resistor of JP3 jumper to ENA from 1k to 4.7k
+- Added 2.4k resistors to all autosquare-button nets
+- Removed analog switches for analog expander
+  - Added mosfet to cut off the power for the analog expander when no ESP32 is installed
+- Removed 74HCT541 octal buffer for DIR ouputs from controllermodule
+  - Added two multiplexer to select whether the DIR signal comes from the controllermodule or from the ESP32, default is from controllermodule
+  - Removed 74HCT541 DIR buffer between driver and multiplexer
+
+### 2.12
+
+- Fixed wrong wire connections due to naming issues with the software
+- added two BAV70DW schottky gates from outputs 1-4 and removed an or gate 74HCT32 instead
+
+### 2.11
 
 - removed two BAV70DW schottky gates from outputs 1-4 and added an or gate 74HCT32 instead
+- seperated 5V to several nets to protect against short circuits
+  - seperate 5V net for all ICs
+  - seperate 5V net for the drivers
+- Moved DAC 2k4 resistors from DAC to the analog multiplexer
 
 ### 2.10 - 23.08.2023
 

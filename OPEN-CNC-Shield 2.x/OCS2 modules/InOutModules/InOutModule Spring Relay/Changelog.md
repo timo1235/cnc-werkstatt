@@ -2,6 +2,18 @@
 
 ## Changelog
 
+### 1.07
+
+- Added own resistors for all COM1 and GND lines to the slide switches
+- Removed resistors arrays and added single resistors instead
+
+### 1.06
+
+- Corrected position of switches
+- Corrected orientation of switches
+- Added 1k resistor for all COM1 lines to the slide switches to prevent short circuit in case of broken slide switches
+- Added 1k resistor for all GND lines to the slide switches to prevent short circuit in case of broken slide switches
+
 ### 1.05
 
 - Changed spring terminals footprint to universal footprint
