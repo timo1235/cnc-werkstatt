@@ -2,6 +2,10 @@
 
 ## Changelog
 
+### 1.05
+
+- Replaced 1k 500mW resistors with 1k 1W resistors
+
 ### 1.04
 
 - Added own resistors for all COM1 and GND lines to the slide switches
