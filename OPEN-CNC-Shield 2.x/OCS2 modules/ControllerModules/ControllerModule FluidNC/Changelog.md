@@ -2,6 +2,10 @@
 
 ## Changelog
 
+### next
+
+- improve net width on pcb for power supply
+
 ### 1.02
 
 - Changed micro sd card slot manufacturer
