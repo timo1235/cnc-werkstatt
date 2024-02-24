@@ -4,9 +4,11 @@
 
 ## Changelog
 ### 1.6
+* Added appropriate resistors to all LEDs
+* Added protection for overvoltage
+* Added protection for short circuit
 * Changed input volatge from 12V to 12V-32V
-* Changed input led resistor from 680ohm to 1800ohm
-* Added OR-Gate to increase voltage of PULL, DIR and ENA to 5V
+* Added Buffer to increase voltage of PULL, DIR, ENA and Spindle PWM to 5V
 * Changed 10K single resistors to resistor array
 
 ### 1.5 
