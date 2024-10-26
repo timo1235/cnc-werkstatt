@@ -2,7 +2,7 @@
 
 ## Changelog
 
-### next
+### 1.03
 
 - improve net width on pcb for power supply
 

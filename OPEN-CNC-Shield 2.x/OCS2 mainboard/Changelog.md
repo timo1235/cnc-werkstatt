@@ -2,6 +2,9 @@
 
 ## Changelog
 
+### 2.14 
+- toDo: Add capacitors to ICs
+
 ### 2.13
 
 - Changed ENA connections

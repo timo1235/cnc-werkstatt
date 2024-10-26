@@ -10,6 +10,7 @@
 * Changed input volatge from 12V to 12V-32V
 * Added Buffer to increase voltage of PULL, DIR, ENA and Spindle PWM to 5V
 * Changed 10K single resistors to resistor array
+* Added spindle VCC 5V - 10V Jumper
 
 ### 1.5 
 * Added Pullup resistors to ESP32 input-only pins 34,35,36,39
