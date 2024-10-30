@@ -2,6 +2,9 @@
 
 ## Changelog
 
+### 1.7
+- Added decoupling capacitors to inputs
+
 ### 1.06
 
 - Added usb c port at the front to power the pcb and charge the powerbank

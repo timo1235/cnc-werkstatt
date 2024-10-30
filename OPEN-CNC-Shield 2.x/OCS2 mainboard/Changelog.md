@@ -4,6 +4,7 @@
 
 ### 2.14 
 - toDo: Add capacitors to ICs
+- Changed to board terminals from spring clamps to pluggable screw terminals
 
 ### 2.13
 
