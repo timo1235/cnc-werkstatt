@@ -127,8 +127,19 @@ void ReceiveEventHandler(int rcv_frame_size) {
 }
 
 void set_input_data() {
-    send_frame[0]  = 0xFF;
-    send_frame[1]  = 0xFF;
+    send_frame[0] = 0xFF;
+    send_frame[1] = 0xFF;   // Set all bits to 1 initially
+    if (!inputData.programStart) {
+        send_frame[1] &= ~(1 << 0);   // Set Bit 0 to 0 if Program Start button is pressed
+    }
+    if (!inputData.motorStart) {
+        send_frame[1] &= ~(1 << 1);   // Set Bit 1 to 0 if Spindle Start button is pressed
+    }
+    send_frame[1] |= (1 << 2);   // Ensure Bit 2 is always set to 1, as required
+    if (!inputData.ok) {
+        send_frame[1] &= ~(1 << 3);   // Set Bit 3 to 0 if OK button is pressed
+    }
+    // Bits 4 to 7 remain set to 1, as required by the specifications.
     send_frame[2]  = lowByte(inputData.feedrate);
     send_frame[3]  = highByte(inputData.feedrate);
     send_frame[4]  = lowByte(inputData.rotationSpeed);

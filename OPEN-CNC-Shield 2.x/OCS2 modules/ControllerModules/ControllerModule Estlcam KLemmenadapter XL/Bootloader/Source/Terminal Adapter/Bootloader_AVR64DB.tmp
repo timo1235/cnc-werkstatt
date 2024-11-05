@@ -1,0 +1,57 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.8</VERSION>
+ <DEVICE>"AVR64DB64"</DEVICE>
+ <WORKING_DIR>D:\AVR64DB\Public\Bootloader\Source\Terminal Adapter</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\AVR-Dx_DFP\1.10.114\avrasm\inc</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>D:\AVR64DB\Public\Bootloader\Source\main.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\AVR-Dx_DFP\1.10.114\avrasm\inc\AVR64DB64def.inc</FILE>
+  <FILE>D:\AVR64DB\Public\Bootloader\Source\Macros.asm</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>D:\AVR64DB\Public\Bootloader\Source\Terminal Adapter\Bootloader_AVR64DB.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>Bootloader_AVR64DB.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>Bootloader_AVR64DB.map</FILE>
+  <FILE>Bootloader_AVR64DB.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <RESET><FILE>D:\AVR64DB\Public\Bootloader\Source\main.asm</FILE><LINE>33</LINE></RESET>
+  <OSC_INT_CLK><FILE>D:\AVR64DB\Public\Bootloader\Source\main.asm</FILE><LINE>52</LINE></OSC_INT_CLK>
+  <OSC_W_X24><FILE>D:\AVR64DB\Public\Bootloader\Source\main.asm</FILE><LINE>45</LINE></OSC_W_X24>
+  <OSC_INIT_END><FILE>D:\AVR64DB\Public\Bootloader\Source\main.asm</FILE><LINE>57</LINE></OSC_INIT_END>
+  <Main><FILE>D:\AVR64DB\Public\Bootloader\Source\main.asm</FILE><LINE>67</LINE></Main>
+  <RX_Wait><FILE>D:\AVR64DB\Public\Bootloader\Source\main.asm</FILE><LINE>168</LINE></RX_Wait>
+  <JT><FILE>D:\AVR64DB\Public\Bootloader\Source\main.asm</FILE><LINE>73</LINE></JT>
+  <Identify><FILE>D:\AVR64DB\Public\Bootloader\Source\main.asm</FILE><LINE>79</LINE></Identify>
+  <Write_Page><FILE>D:\AVR64DB\Public\Bootloader\Source\main.asm</FILE><LINE>87</LINE></Write_Page>
+  <Read_Page><FILE>D:\AVR64DB\Public\Bootloader\Source\main.asm</FILE><LINE>133</LINE></Read_Page>
+  <ID_Start><FILE>D:\AVR64DB\Public\Bootloader\Source\main.asm</FILE><LINE>195</LINE></ID_Start>
+  <IL><FILE>D:\AVR64DB\Public\Bootloader\Source\main.asm</FILE><LINE>81</LINE></IL>
+  <TX_Wait><FILE>D:\AVR64DB\Public\Bootloader\Source\main.asm</FILE><LINE>176</LINE></TX_Wait>
+  <ID_End><FILE>D:\AVR64DB\Public\Bootloader\Source\main.asm</FILE><LINE>195</LINE></ID_End>
+  <VL><FILE>D:\AVR64DB\Public\Bootloader\Source\main.asm</FILE><LINE>89</LINE></VL>
+  <Get_Z_Addr><FILE>D:\AVR64DB\Public\Bootloader\Source\main.asm</FILE><LINE>142</LINE></Get_Z_Addr>
+  <WFL><FILE>D:\AVR64DB\Public\Bootloader\Source\main.asm</FILE><LINE>101</LINE></WFL>
+  <WEE><FILE>D:\AVR64DB\Public\Bootloader\Source\main.asm</FILE><LINE>98</LINE></WEE>
+  <SPM_Write><FILE>D:\AVR64DB\Public\Bootloader\Source\main.asm</FILE><LINE>185</LINE></SPM_Write>
+  <RB><FILE>D:\AVR64DB\Public\Bootloader\Source\main.asm</FILE><LINE>107</LINE></RB>
+  <Buffer><FILE>D:\AVR64DB\Public\Bootloader\Source\main.asm</FILE><LINE>200</LINE></Buffer>
+  <LB><FILE>D:\AVR64DB\Public\Bootloader\Source\main.asm</FILE><LINE>110</LINE></LB>
+  <WL><FILE>D:\AVR64DB\Public\Bootloader\Source\main.asm</FILE><LINE>116</LINE></WL>
+  <PEE><FILE>D:\AVR64DB\Public\Bootloader\Source\main.asm</FILE><LINE>123</LINE></PEE>
+  <PFL><FILE>D:\AVR64DB\Public\Bootloader\Source\main.asm</FILE><LINE>120</LINE></PFL>
+  <PN><FILE>D:\AVR64DB\Public\Bootloader\Source\main.asm</FILE><LINE>125</LINE></PN>
+  <RL><FILE>D:\AVR64DB\Public\Bootloader\Source\main.asm</FILE><LINE>136</LINE></RL>
+  <CMS><FILE>D:\AVR64DB\Public\Bootloader\Source\main.asm</FILE><LINE>159</LINE></CMS>
+  <GE><FILE>D:\AVR64DB\Public\Bootloader\Source\main.asm</FILE><LINE>156</LINE></GE>
+  <CS><FILE>D:\AVR64DB\Public\Bootloader\Source\main.asm</FILE><LINE>164</LINE></CS>
+ </LABELS>
+</ASSEMBLER_INFO>

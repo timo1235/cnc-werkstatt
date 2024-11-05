@@ -1,0 +1,37 @@
+;						= R0
+.def R_SREG				= R1
+.def R_F_Overr_L		= R2
+.def R_F_Overr_H		= R3
+.def T3					= R4
+.def I3				    = R5
+.def R_HR_S				= R6	;Handrad Zwischenzähler -> Anzahl Schritte die bei harter Kopplung noch zu fahren sind bzw. Richtung beim manuellen fahren...
+.def R_ACC_DEC			= R7
+.def FIFO_IN			= R8
+.def FIFO_Out			= R9
+.def R_CX				= R10	;Zählwert X Achtung Reihenfolge der Register hier wichtig, da mit Movw gearbeitet wird
+.def R_CY				= R11   ;Zählwert Y R_CX / R_CY und R_AX / R_AY müssen ein Paar bilden!
+.def R_AX				= R12	;Addierwert X
+.def R_AY				= R13	;Addierwert Y
+.def R_CZ				= R14   ;Zählwert Z
+.def R_AZ				= R15	;Addierwert Z
+.def R_Input_Counter	= R16						
+.def T1					= R17
+.def T2					= R18
+.def I1					= R19
+.def I2					= R20
+.def R_Buffer_Free		= R21 	;Kombiverwendung: Buffer_Free kommt nur im CNC Betrieb, Handradindex nur im manuellen vor...
+.def R_HR_Index			= R21	;Letzter Index er A/B Eingänge...
+.def R_Steps_L			= R22	;Schrittzähler
+.def R_Steps_H			= R23
+.def R_Ramp_Is_L		= R24   ;Keep this here to allow adiw sbiw inSTRuctions
+.def R_Ramp_Is_H		= R25  
+.def R_HR_L				= R26   ;X CMD Buffer Zeiger schreiben / Tatsächlich bei harter Kopplung gefahrene Schritte
+.def R_HR_H				= R27	;X CMD Buffer Zeiger schreiben / Tatsächlich bei harter Kopplung gefahrene Schritte
+.def R_Ramp_Soll_L		= R28	;Y CMD Buffer Zeiger lesen / Ramp target for manual moving
+.def R_Ramp_Soll_H		= R29	;Y CMD Buffer Zeiger lesen / Ramp target for manual moving
+;						  R30	;Z Allgemeiner Zeiger
+;						  R31	;Z Allgemeiner Zeiger
+.equ I_Status			= GPR_GPR0	;General Purpose Registers...
+.equ I_Save1			= GPR_GPR1
+.equ I_Save2			= GPR_GPR2
+;						= GPR_GRP3

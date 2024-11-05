@@ -1,0 +1,12 @@
+D:\AVR64DB\Public\Bootloader\EEProm_Tool\bin\Debug\EEProm_Tool.exe.config
+D:\AVR64DB\Public\Bootloader\EEProm_Tool\bin\Debug\EEProm_Tool.exe
+D:\AVR64DB\Public\Bootloader\EEProm_Tool\bin\Debug\EEProm_Tool.pdb
+D:\AVR64DB\Public\Bootloader\EEProm_Tool\bin\Debug\EEProm_Tool.xml
+D:\AVR64DB\Public\Bootloader\EEProm_Tool\obj\Debug\EEProm_Tool.vbproj.AssemblyReference.cache
+D:\AVR64DB\Public\Bootloader\EEProm_Tool\obj\Debug\EEProm_Tool.Form1.resources
+D:\AVR64DB\Public\Bootloader\EEProm_Tool\obj\Debug\EEProm_Tool.Resources.resources
+D:\AVR64DB\Public\Bootloader\EEProm_Tool\obj\Debug\EEProm_Tool.vbproj.GenerateResource.cache
+D:\AVR64DB\Public\Bootloader\EEProm_Tool\obj\Debug\EEProm_Tool.vbproj.CoreCompileInputs.cache
+D:\AVR64DB\Public\Bootloader\EEProm_Tool\obj\Debug\EEProm_Tool.exe
+D:\AVR64DB\Public\Bootloader\EEProm_Tool\obj\Debug\EEProm_Tool.xml
+D:\AVR64DB\Public\Bootloader\EEProm_Tool\obj\Debug\EEProm_Tool.pdb
