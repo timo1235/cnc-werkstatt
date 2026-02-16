@@ -40,6 +40,17 @@ LiquidCrystal_I2C lcd(0x27, 20, 4); // set the LCD address to 0x27 for a 16 char
 #define MOTOR_STEPS_PER_CYCLE 800
 // Fast speed in mm/second - for normal movement
 #define MOVEMENT_FAST_SPEED 10
+// Minimum pulse width in microseconds for the step signal
+// Increase this value if using closed-loop drivers (e.g. HBS57, HBS86H, Lichuan)
+// Open-loop drivers (A4988, DRV8825): 1-2 is fine
+// Closed-loop drivers: 5-10 recommended
+// default: 10
+#define MIN_PULSE_WIDTH_US 10
+// Set to true if your driver uses inverted enable logic (HIGH = enabled)
+// Most open-loop drivers: false (active LOW)
+// Some closed-loop drivers: true (active HIGH)
+// default: false
+#define INVERT_ENA false
 
 // ---------------------------------------------------------------------
 // END configuration - only edit below if you know what you are doing
@@ -192,8 +203,8 @@ void setup()
     pinMode(enaPin, OUTPUT);
     pinMode(spindleOnOffPin, OUTPUT);
 
-    digitalWrite(enaPin, LOW);
-    digitalWrite(spindleOnOffPin, LOW);    
+    digitalWrite(enaPin, INVERT_ENA ? HIGH : LOW);
+    digitalWrite(spindleOnOffPin, LOW);
 
     // Setup PWM
     ledcSetup(0, 5000, 8);
@@ -235,6 +246,7 @@ void setup()
     maxSpeed = MOVEMENT_FAST_SPEED * getStepsPerMM();
     slowSpeed = MOVEMENT_SLOW_SPEED * getStepsPerMM();
     stepper.setPinsInverted(true);
+    stepper.setMinPulseWidth(MIN_PULSE_WIDTH_US);
     stepper.setMaxSpeed(maxSpeed);
     stepper.setAcceleration(acceleration);
 

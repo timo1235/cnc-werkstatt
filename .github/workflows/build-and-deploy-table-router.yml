@@ -1,0 +1,117 @@
+name: Build Firmware & Deploy Web Flasher
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Cache PlatformIO
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/pip
+            ~/.platformio/.cache
+            ~/.platformio/packages
+            ~/.platformio/platforms
+          key: ${{ runner.os }}-pio-${{ hashFiles('**/platformio.ini') }}
+          restore-keys: |
+            ${{ runner.os }}-pio-
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install PlatformIO
+        run: |
+          pip install --upgrade pip
+          pip install --upgrade platformio
+
+      - name: Build firmware
+        working-directory: "Table Router Shield/Sketch/v2.0/vscode-table-router-shield"
+        run: pio run --environment esp32doit-devkit-v1
+
+      - name: Create merged firmware binary
+        working-directory: "Table Router Shield/Sketch/v2.0/vscode-table-router-shield"
+        run: |
+          BOOTLOADER=$(find .pio/build/esp32doit-devkit-v1/ -name "bootloader*.bin" | head -1)
+          echo "Bootloader: $BOOTLOADER"
+
+          BOOT_APP0=$(find ~/.platformio/packages/ -name "boot_app0.bin" | head -1)
+          echo "boot_app0: $BOOT_APP0"
+
+          python -m esptool --chip esp32 merge_bin \
+            -o merged-firmware.bin \
+            --flash_mode dio \
+            --flash_freq 40m \
+            --flash_size 4MB \
+            0x1000  "$BOOTLOADER" \
+            0x8000  .pio/build/esp32doit-devkit-v1/partitions.bin \
+            0xe000  "$BOOT_APP0" \
+            0x10000 .pio/build/esp32doit-devkit-v1/firmware.bin
+
+          echo "Merged firmware size: $(ls -la merged-firmware.bin | awk '{print $5}') bytes"
+
+      - name: Prepare web flasher site
+        run: |
+          VERSION=$(git describe --tags --always 2>/dev/null || echo "dev-$(git rev-parse --short HEAD)")
+          echo "Firmware version: $VERSION"
+
+          mkdir -p _site/firmware
+
+          cp "Table Router Shield/Sketch/v2.0/vscode-table-router-shield/merged-firmware.bin" _site/firmware/
+          cp "Table Router Shield/web-flasher/index.html" _site/
+
+          cat > _site/firmware/manifest.json << EOF
+          {
+            "name": "Table Router Shield Firmware",
+            "version": "$VERSION",
+            "new_install_prompt_erase": true,
+            "builds": [
+              {
+                "chipFamily": "ESP32",
+                "parts": [
+                  { "path": "merged-firmware.bin", "offset": 0 }
+                ]
+              }
+            ]
+          }
+          EOF
+
+          echo "Site contents:"
+          find _site -type f
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
